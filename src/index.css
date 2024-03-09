@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,500;1,6..96,600;1,6..96,700;1,6..96,800;1,6..96,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.demo-class{
+  background-color: brown;
+}
+.splash-screen{
+  @apply fixed top-0 left-0 w-full h-full bg-[#0D8AC7] flex justify-center items-center z-50 text-white
+}
