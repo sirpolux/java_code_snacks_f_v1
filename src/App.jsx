@@ -17,6 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/'  element={<Home/>} />
+        <Route path='/chapters' element={<Chapter/>} />
         <Route path='/list' element={<Chapter/>} />
       </Routes>
     </BrowserRouter>

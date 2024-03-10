@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import java_icon from "/java_icon.svg"
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
+    const navigate = useNavigate();
     setTimeout(function() {
         document.getElementById('splash-screen').style.display = 'none';
         document.body.style.overflow = 'auto';
       }, 2000);
     const [page, setPage] = useState(1)
+    const handleGotoCourse=()=>{
+        navigate("/chapters")
+    }
   return (
     <div className='h-full'>
         <div id="splash-screen" className='splash-screen p-6 '>
@@ -40,7 +45,7 @@ const Home = () => {
                         <p className='font-normal text-sm mt-3` '>What is your full name?</p>
                         <input type="text" placeholder='Tony' name="" id="" className='bg-inputBackground w-full rounded-lg p-3 mt-2' />
                         <div> 
-                            <button className='rounded-lg bg-primary w-full py-3 font-inter text-white text-sm mt-6'>Open Course</button>
+                            <button className='rounded-lg bg-primary w-full py-3 font-inter text-white text-sm mt-6' onClick={handleGotoCourse}>Open Course</button>
                         </div>
                     </div>
                     :null
