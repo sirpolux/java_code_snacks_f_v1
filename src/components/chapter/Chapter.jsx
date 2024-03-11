@@ -48,7 +48,7 @@ const Chapter = () => {
         }
     ];
   return(
-    <div>
+    <div className='transition-all duration-1000  ease-in'>
         {chapters.map((item, index)=><ChapterListItem {...item} key={index} />) }
     </div>
   )

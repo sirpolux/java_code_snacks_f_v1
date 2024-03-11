@@ -1,5 +1,6 @@
 import React from 'react'
 import SubTopicList from './SubTopicList'
+import Nav from '../common/Nav'
 
 const SubTopic = () => {
 
@@ -114,7 +115,8 @@ const SubTopic = () => {
     }
 
   return (
-    <div>
+    <div className='transition-all duration-1000  ease-in'>
+        <Nav target="/chapters"/>
         {
             subTopics[chapter].map((item,index)=><SubTopicList key={index} {...item} />)
         }

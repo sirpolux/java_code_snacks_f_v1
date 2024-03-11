@@ -8,6 +8,7 @@ import ChapterListItem from './components/chapter/ChapterListItem'
 import Chapter from './components/chapter/Chapter'
 import SubTopicList from './components/chapter/SubTopicList'
 import SubTopic from './components/chapter/SubTopic'
+import Nav from './components/common/Nav'
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
         <Route path='/'  element={<Home/>} />
         <Route path='/chapters' element={<Chapter/>} />
         <Route path='/list' element={<Chapter/>} />
-        <Route path='/sub' element={<SubTopicList/>} />
+        <Route path='/nav' element={<Nav/>} />
         <Route path='/subtopic'  element = {<SubTopic/>} />
       </Routes>
     </BrowserRouter>
