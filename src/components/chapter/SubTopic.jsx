@@ -1,6 +1,12 @@
 import React from 'react'
+import SubTopicList from './SubTopicList'
 
 const SubTopic = () => {
+
+    const searchParams = new URLSearchParams(location.search)
+    const chapter=searchParams.get('chapterId')
+    console.log(searchParams.get('chapterId'))
+
     const subTopics={
         "one":[
             {
@@ -109,7 +115,9 @@ const SubTopic = () => {
 
   return (
     <div>
-
+        {
+            subTopics[chapter].map((item,index)=><SubTopicList key={index} {...item} />)
+        }
     </div>
   )
 }
