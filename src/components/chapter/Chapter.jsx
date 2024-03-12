@@ -49,7 +49,7 @@ const Chapter = () => {
     ];
   return(
     <div className='transition-all duration-1000  ease-in'>
-        {chapters.map((item, index)=><ChapterListItem {...item} key={index} />) }
+        {chapters.map((item, index)=><ChapterListItem {...item} key={index}  itemInitial={"c"+(index+1)}/>) }
     </div>
   )
 }

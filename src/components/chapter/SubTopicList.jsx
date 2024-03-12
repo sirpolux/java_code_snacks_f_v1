@@ -1,9 +1,13 @@
 import React from 'react'
 
-const SubTopicList = ({topic,exe,duration}) => {
+const SubTopicList = ({clickHandle,subIndex,topic,duration,exe}) => {
+
+  const handleTopicClick=()=>{
+    clickHandle(subIndex)
+  }
 
   return (
-    <div className='flex flex-col gap-[1vw] shadow-sm border p-[4vw] font-mono text-[13px]'  onClick={()=>handleTopicClick(name)}>
+    <div className='flex flex-col gap-[1vw] shadow-sm border p-[4vw] font-mono text-[13px]'  onClick={()=>handleTopicClick()}>
         <div className='flex justify-between items-center font-normal'>
             <p className='font-madini text-[0.9rem]'>{topic} </p>
         </div>

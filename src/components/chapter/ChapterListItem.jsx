@@ -4,13 +4,14 @@ import Nav from '../common/Nav';
 
 
 
-const ChapterListItem = ({name,topic,duration,exe,id}) => {
+const ChapterListItem = ({name,topic,duration,exe,id,itemInitial}) => {
 
     const navigate = useNavigate();
     
 
     const handleTopicClick=()=>{
         console.log(name);
+        console.log(itemInitial)
         let path = "/subtopic?chapterId="+id
         navigate(path)
     }
@@ -23,7 +24,7 @@ const ChapterListItem = ({name,topic,duration,exe,id}) => {
 
   return (
     <div>
-        <Link to={{pathname:"/subtopic", search:'?chapterId='+id}}>
+        <Link to={{pathname:"/subtopic", search:'?chapterId='+id+"&itemInitial="+itemInitial}}>
             <div className='flex flex-col gap-[1vw] shadow-sm border p-[4vw] font-mono text-[13px]' >
                 <div className='flex justify-between items-center font-normal'>
                     <p className='font-madini text-lg'>{name}</p>

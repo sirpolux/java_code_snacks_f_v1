@@ -1,33 +1,43 @@
 import React from 'react'
 import SubTopicList from './SubTopicList'
 import Nav from '../common/Nav'
+import resourceData from '../../data/courseData.json'
 
 const SubTopic = () => {
 
     const searchParams = new URLSearchParams(location.search)
     const chapter=searchParams.get('chapterId')
+    const itemInitials=searchParams.get("itemInitial")
+    console.log(searchParams.get("itemInitial"))
     console.log(searchParams.get('chapterId'))
+
+    const getResource=(subTopicIndex)=>{
+        let resourceName=itemInitials+"-"+subTopicIndex
+        return resourceName
+    }
+    const handleSubTopicClick=(subTopicIndex)=>{
+        let resource = getResource(subTopicIndex)
+        let targetResource=resourceData[resource]
+        console.log(targetResource)
+        console.log(resource)
+    }
 
     const subTopics={
         "one":[
             {
                 "topic":"Java Programming",
                 "exe":"2",
-                "duration": "6 mins",
-                "resource":"c1-1"
-                
+                "duration": "6 mins"
             },
             {
                 "topic":"Setting up the development environment",
                 "exe":"0",
-                "duration": "5 mins",
-                "resource":"c1-2"
+                "duration": "5 mins"
             },
             {
                 "topic":"Basic struture of Java Program",
                 "exe":"2",
-                "duration": "7 mins",
-                "resource":"c1-3",
+                "duration": "7 mins"
             }
         ],
         "two":[
@@ -122,7 +132,7 @@ const SubTopic = () => {
     <div className='transition-all duration-1000  ease-in'>
         <Nav target="/chapters"/>
         {
-            subTopics[chapter].map((item,index)=><SubTopicList key={index} {...item} />)
+            subTopics[chapter].map((item,index)=><SubTopicList key={index} {...item}  clickHandle={handleSubTopicClick} subIndex={index+1} />)
         }
     </div>
   )

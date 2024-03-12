@@ -11,6 +11,7 @@ import SubTopic from './components/chapter/SubTopic'
 import Nav from './components/common/Nav'
 import { TopicTopContent } from './components/common/TopicTopContent'
 import TopicMainContent from './components/common/TopicMainContent'
+import ExampleItem from './components/chapter/ExampleItem'
 
 function App() {
 
@@ -26,8 +27,12 @@ function App() {
         <Route path='/list' element={<Chapter/>} />
         <Route path='/nav' element={<Nav/>} />
         <Route path='/subtopic'  element = {<SubTopic/>} />
+
+
         <Route path='/main'  element = {<TopicMainContent/>} />
         <Route path='/top'  element = {<TopicTopContent/>} />
+        <Route path='/exaList'  element = {<ExampleItem/>} />
+
 
         
       </Routes>
