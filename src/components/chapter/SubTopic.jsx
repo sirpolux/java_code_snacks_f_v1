@@ -24,7 +24,7 @@ const SubTopic = () => {
                 "resource":"c1-2"
             },
             {
-                "topic":"Basic strvture of Java Program",
+                "topic":"Basic struture of Java Program",
                 "exe":"2",
                 "duration": "7 mins",
                 "resource":"c1-3",
