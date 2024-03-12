@@ -13,17 +13,21 @@ const SubTopic = () => {
             {
                 "topic":"Java Programming",
                 "exe":"2",
-                "duration": "6 mins"
+                "duration": "6 mins",
+                "resource":"c1-1"
+                
             },
             {
                 "topic":"Setting up the development environment",
                 "exe":"0",
-                "duration": "5 mins"
+                "duration": "5 mins",
+                "resource":"c1-2"
             },
             {
                 "topic":"Basic strvture of Java Program",
                 "exe":"2",
-                "duration": "7 mins"
+                "duration": "7 mins",
+                "resource":"c1-3",
             }
         ],
         "two":[

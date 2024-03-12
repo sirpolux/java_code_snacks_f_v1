@@ -1,0 +1,132 @@
+{   
+    "c1-1":{
+
+    },
+
+
+
+
+    "c2-3":{
+        "overView":"Arrays in programming are data structures used to store multiple values of the same type under a single variable name. They allow you to organize related data efficiently and access it using an index. Arrays have a fixed size determined when they are declared, and each element in the array can be accessed by its position, or index, within the array. This makes arrays useful for tasks such as storing collections of data, iterating over elements, and performing operations on them in a systematic way.",
+        "importance":[
+            {
+                "heading":"Efficient Storage",
+                "text":"Arrays allow for the efficient storage of multiple values of the same type under a single variable name. This helps in organizing and managing data more effectively."
+            },
+
+            {
+                "heading":"Random Access",
+                "text":"Elements in an array can be accessed directly using their index. This means you can quickly retrieve or modify individual elements without having to traverse the entire data structure."
+            },
+            {
+                "heading":"Memory Management",
+                "text":"Arrays provide a contiguous block of memory for storing elements. This makes memory management more straightforward and efficient compared to managing individual variables for each element."
+            },
+            {
+                "heading":"Random Access",
+                "text":"Elements in an array can be accessed directly using their index. This means you can quickly retrieve or modify individual elements without having to traverse the entire data structure."
+            },
+            {
+                "heading":"Iterative Operations",
+                "text":"Arrays facilitate iterative operations, such as looping through each element of the array to perform operations or computations on them. This is particularly useful for tasks like sorting, searching, or filtering data."
+            },
+            {
+                "heading":"Passing Data",
+                "text":"Arrays enable the passing of multiple values to functions or methods in a single parameter, simplifying the code and reducing the need for numerous arguments."
+            },
+            {
+                "heading":"Data Structures",
+                "text":" Many other data structures, such as stacks, queues, and matrices, are implemented using arrays as their underlying storage mechanism. Arrays serve as a fundamental building block for more complex data structures."
+            },
+            {
+                "heading":"Efficiency",
+                "text":"Due to their simplicity and direct memory access, arrays are often more efficient in terms of time and space complexity compared to other data structures for certain operations."
+            },
+            {
+                "heading":"Flexibility",
+                "text":"Arrays can be used to represent various types of data, including integers, floating-point numbers, characters, strings, and custom objects. They provide a flexible way to store and manipulate data in a program"
+            }
+        ],
+        "summary":"Overall, arrays play a crucial role in programming by providing a versatile and efficient means of storing and accessing data, which is essential for developing efficient algorithms and writing maintainable code",
+        "videoSrc":"",
+        "otherResource":[
+            {
+                "title":"",
+                "link":""
+            }
+        ],
+        "assessment":[
+            {
+                "questionType":"TYPE-A",
+                "question":"What is the size of an array in Java determined by?",
+                "multipleAns":false,
+                "resource":"",
+                "correctAnswers":"The length specified during declaration",
+                "options":["The number of elements it currently holds",
+                "The length specified during declaration",
+                "The sum of elements it contains",
+                "The maximum value it can hold"
+                ]
+            },
+            {
+                "questionType":"TYPE-A",
+                "question":"Which of the following statements is true regarding arrays in Java?",
+                "multipleAns":false,
+                "resource":"",
+                "correctAnswers":"Elements in an array must be of the same data type",
+                "options":["Arrays can store elements of different data types",
+                "Arrays are fixed in size and cannot be resized",
+                "Elements in an array must be of the same data type",
+                "Arrays automatically resize themselves as elements are added or removed"
+                ]
+            },
+            {
+                "questionType":"TYPE-A",
+                "question":"What is the time complexity of accessing an element in an array by its index in Java?",
+                "multipleAns":false,
+                "resource":"",
+                "correctAnswers":"Constant time - O(1)",
+                "options":["Constant time - O(1)","Logarithmic time - O(log n)","Linear time - O(n)", "Quadratic time - O(n^2)" ]
+            },
+            {
+                "questionType":"TYPE-A",
+                "question":"Which method is used to get the length of an array in Java?",
+                "multipleAns":false,
+                "resource":"",
+                "correctAnswers":"length()",
+                "options":["length()", "size()", "getSize()", "length"]
+            }
+
+        ]
+       
+    },
+    "c1-2":{
+
+    },
+    "temp":{
+        "overView":"",
+        "importance":[
+            {
+                "heading":"",
+                "text":""
+            }
+        ],
+        "videoSrc":"",
+        "otherResource":[
+            {
+                "title":"",
+                "link":""
+            }
+        ],
+        "summary":"",
+        "assessment":[
+            {
+                "questionType":"",
+                "question":"",
+                "correctAnswers":[],
+                "options":[]
+            }
+        ]
+    }
+    
+}
