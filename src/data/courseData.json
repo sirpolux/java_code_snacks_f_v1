@@ -5,6 +5,7 @@
 
 
     "c2-1":{
+        "flow":["overView", "examples", "video", "summary", "assessment", "otherResource"],
         "topic":"Data Types",
         "overView":["In Java programming, data types are fundamental building blocks used to define the type of data that a variable can hold or manipulate. They play a crucial role in defining the behavior and characteristics of variables, objects, and expressions in Java programs. Understanding data types is essential for writing efficient, reliable, and maintainable Java code",
         "In Java, variables must be declared with a specific data type before they can be used. This helps enforce type safety and ensures that variables are used appropriately within the program.",
@@ -13,11 +14,10 @@
 
         ],
         "readTime":"15",
-
         "importanceHeading":"",
         "importance":null,
         "videoSrc":"",
-        "importanceLen":"short",
+        "exampleLen":"short",
         "examples":[
             {
                 "category":"Primitive Data Types",
@@ -247,6 +247,7 @@
         ]        
     },
     "c2-2":{
+        "flow":["overView", "examples", "video", "summary", "assessment", "otherResource"],
         "topic":"Introduction to Variables",
         "overView":[
             "In Java programming, a variable is a named storage location that holds data, which can be manipulated and accessed within a program. Variables are used to store information such as numbers, characters, strings, and objects, and they play a fundamental role in writing Java programs.",
@@ -327,6 +328,7 @@
     },
 
     "c2-3":{
+        "flow":["overView", "examples", "video", "summary", "assessment", "otherResource"],
         "topic":"Arrays",
         "overView":["Arrays in programming are data structures used to store multiple values of the same type under a single variable name. They allow you to organize related data efficiently and access it using an index. Arrays have a fixed size determined when they are declared, and each element in the array can be accessed by its position, or index, within the array. This makes arrays useful for tasks such as storing collections of data, iterating over elements, and performing operations on them in a systematic way."],
         "importanceHeading":"Arrays are important in programming for several reasons:",
