@@ -5,34 +5,64 @@ import resourceData from '../../data/courseData.json'
 import TopicMainContent from '../common/TopicMainContent'
 
 const SubTopic = () => {
-     const defaultData={
+    
+
+    const defaultData={
         "title":"",
         "overView":"",
         "assessment":{},
         "summary":{},
         "importance":{},
         "examples":{},
+        "item":"overView"
     }
+   const defaultExtras={
+        "moduleSize":0,
+        "modulePosition":0,
+        "courseItemIndex":0,
+        "courseSize":0,
+        "currentItem":"overView"
+    }
+
+    const [flow,setFlow]=useState([])
+
+    
+
+    const [extras,setExtras]=useState({...defaultExtras});
     const [dataFile,updateDatafile]= useState({...defaultData})
     const [currentItem,updateCurrentItem]=useState("")
     const [navPage,setNavPage]=useState(1)
+    const [notFirstPage,setNotFirstPage]=useState(false);
+    const [data,setData]=useState({});
+
     let item =""
     //const [courseItem,setCourseItem]=useState("")
    
 
     //const [currentData,updateCurrenData]=useState({...defaultData})
-    let moduleSize=0
-    let modulePosition=0;
-    let courseItemIndex=0
-    let courseSize=0;
+
 
     const handleViewUpdate=(option)=>{
+        setNotFirstPage(true)
+        const {modulePosition,moduleSize}=extras
+        console.log("Handler was clicked")
+        console.log(option)
         switch(option){
             case "f":
-                modulePosition<moduleSize-1?modulePosition++:changeCourseItem(option)
+                if(modulePosition<moduleSize-1){
+                    setExtras(
+                        {...extras, "modulePosition":modulePosition+1}
+                    ),
+                    ()=>{
+                        console.log(modulePosition)
+                        console.log("module size"+ extras.moduleSize)
+                        decideCurrentResource()
+                    }
+                }
+                //modulePosition<moduleSize-1?modulePosition++:changeCourseItem(option)
                 break;
             case "b":
-                modulePosition>0? modulePosition--:changeCourseItem(option)
+                //modulePosition>0? modulePosition--:changeCourseItem(option)
                 break
         }
 
@@ -41,7 +71,8 @@ const SubTopic = () => {
     const decideCurrentResource=()=>{
         console.log("i got here")
         console.log("Current Item"+currentItem)
-        switch(item){
+        console.log("module item "+ extras.modulePosition)
+        switch(dataFile.item){
             case "overView":
                 console.log("I should work")
                 handleOverview()
@@ -81,33 +112,47 @@ const SubTopic = () => {
     }
     const handleSubTopicClick=(subTopicIndex)=>{
         let resource = getResource(subTopicIndex)
-        let targetResource=resourceData[resource]
-        courseResource = targetResource;
-        let flow=courseResource.flow;
-        moduleSize=courseResource[flow[courseItemIndex]].length
-        courseSize=flow.length
-        item="overView"
-        updateCurrentItem("overView")
-        handleItemUpdate("overView")
-        decideCurrentResource()
+        let data=resourceData[resource]
+        let moduleSize=0;
+        console.log("module size: "+ extras.moduleSize)
+        let courseSize=0
+        //update dataFile
+        updateDatafile(data, 
+            ()=>{
+                moduleSize=dataFile[flow[0]].length
+                courseSize=dataFile.flow.length                
+                setExtras(
+                    {...extras, "moduleSize":moduleSize, "courseSize":courseSize, currentItem:"overView"},
+                    ()=>{
+                        decideCurrentResource()
+                        setNavPage(prevNavPage=>prevNavPage+1)
+                    }    
+                )
+            }    
+        )
+
         
-        //console.log(resource)
-        setNavPage(prevNavPage=>prevNavPage+1)
     }
     const handleSummary=()=>{
 
     }
-    const handleOverview=()=>{
-        updateDatafile({...dataFile, "overView":courseResource.overView[modulePosition], "title":courseResource.topic})
-        console.log(courseResource.overView[modulePosition]);
-        //console.log(dataFile)
+    const handleOverview=(title)=>{
+        if(notFirstPage){
+            console.log("i was called")
+            updateDatafile({...dataFile, "overView":data.overView[extras.modulePosition], "title":data.topic})
+            console.log(courseResource.overView[extras.modulePosition]);
+            console.log(dataFile)
+        }else{
+            updateDatafile({...dataFile, "overView":courseResource.overView[0], "title":courseResource.topic})
+        }
+
     }
 
-    useEffect(()=>{
-     console.log(dataFile)   
-     console.log("Item Updated: " +currentItem)
+    // useEffect(()=>{
+    //  console.log(dataFile)   
+    //  console.log("Item Updated: " +currentItem)
      
-    },[currentItem,dataFile])
+    // },[currentItem,dataFile])
 
     const handleExamples=()=>{
 
@@ -232,7 +277,7 @@ const SubTopic = () => {
         </div>
         }
         {navPage==2&&
-            <TopicMainContent backtoContent={setNavPage} {...dataFile} currentItem={currentItem} />
+            <TopicMainContent backtoContent={setNavPage} {...dataFile} currentItem={currentItem} hasPrevious={notFirstPage} nextItem={handleViewUpdate} updatePage={setNotFirstPage} />
                 
         }
 

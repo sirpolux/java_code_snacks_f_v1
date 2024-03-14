@@ -14,6 +14,7 @@ import TopicMainContent from './components/common/TopicMainContent'
 import ExampleItem from './components/chapter/ExampleItem'
 import ImportanceItem from './components/chapter/ImportanceItem'
 import Test from './components/chapter/Test'
+import C101 from './components/subtopics/C101'
 
 function App() {
 
@@ -37,11 +38,11 @@ function App() {
         <Route path='/exaList'  element = {<ExampleItem/>} />
         <Route path='/imp'  element = {<ImportanceItem/>} />
         <Route path='/test'  element = {<Test/>} />
-        
 
 
 
-        
+        <Route path='/c2-1' element={<C101/>} />
+
       </Routes>
     </BrowserRouter>
     </>

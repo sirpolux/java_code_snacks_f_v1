@@ -1,7 +1,9 @@
 import React from 'react'
 import Overview from '../chapter/Overview'
+import NavButton from '../chapter/NavButton'
 
-const TopicMainContent = ({topic, content,backtoContent, currentItem, overView, title}) => {
+const TopicMainContent = ({topic, content,backtoContent, currentItem, overView, title, hasPrevious, nextItem, updatePage}) => {
+
   return (
     <div className='flex w-full h-screen flex-col bg-gradient-to-b from-primary to-white'>
         <div className='h-28 w-full p-5'>
@@ -19,7 +21,14 @@ const TopicMainContent = ({topic, content,backtoContent, currentItem, overView, 
 
         </div>
         <div className='overflow-scroll  bg-white h-full pb-40'>
-            {currentItem=="overView" &&  <Overview data={overView} />}
+            {currentItem=="overView" &&  <Overview data={overView} showPrev={hasPrevious} />}
+            
+            <div className='flex p-4 gap-4'>
+
+                <NavButton text="Previous" action ="b" handler={nextItem} updatePage={updatePage} />
+                <NavButton text="Continue" action="f" handler={nextItem}/> 
+            </div>
+            
         </div>
     </div>
   )
