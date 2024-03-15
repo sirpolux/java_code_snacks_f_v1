@@ -15,6 +15,7 @@ import ExampleItem from './components/chapter/ExampleItem'
 import ImportanceItem from './components/chapter/ImportanceItem'
 import Test from './components/chapter/Test'
 import C101 from './components/subtopics/C101'
+import { ExerciseOption } from './components/chapter/ExerciseOption'
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
         <Route path='/exaList'  element = {<ExampleItem/>} />
         <Route path='/imp'  element = {<ImportanceItem/>} />
         <Route path='/test'  element = {<Test/>} />
+        <Route path='/exeOpt'  element = {<ExerciseOption/>} />
+        
 
 
 

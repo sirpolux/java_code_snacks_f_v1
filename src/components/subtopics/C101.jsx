@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import Overview from '../chapter/Overview'
 import NavButton from '../chapter/NavButton'
 import ExampleItem from '../chapter/ExampleItem'
+import VideoFile from '../chapter/VideoFile'
 
 
 const C101 = ({}) => {
 
     const [pageNav,setPageNav]=useState(1)
     const [content,setContent]=useState("overView")
+    const [videoState,setVideoState]=useState(false);
 
     const resource={
         "flow":["overView", "examples", "video", "summary", "assessment", "otherResource"],
@@ -21,7 +23,7 @@ const C101 = ({}) => {
         "readTime":"15",
         "importanceHeading":"",
         "importance":null,
-        "videoSrc":"",
+        "videoSrc":"/C1-1.mp4",
         "exampleLen":"short",
         "examples":[
             {
@@ -262,6 +264,15 @@ const C101 = ({}) => {
         arr.push(data.note)
         examples.push(arr)
     })
+    let examples2=[];
+    resource.examples[1].data.forEach(data=>{
+        let arr=[];
+        arr.push(data.item)
+        arr.push(data.example)
+        arr.push(data.note)
+        examples2.push(arr)
+    })
+
     console.log(examples)
 
     const handleNextItem=(target)=>{
@@ -275,7 +286,16 @@ const C101 = ({}) => {
             case 3:
                 case 4:
                     setContent("example")
+                    setVideoState(false)
             break;
+            case 5:
+                setContent("video")
+                break;
+            case 6:
+                setContent("exercise")
+                break;
+                
+
         }
         if(target==3){
 
@@ -284,6 +304,11 @@ const C101 = ({}) => {
 
     const backtoContent=()=>{
 
+
+    }
+
+    const handleClose =()=>{
+        setVideoState(false)
     }
 
 
@@ -303,7 +328,14 @@ const C101 = ({}) => {
             </div>
         </div>
         <div className='bg-white h-10 rounded-t-3xl'>
-
+            <div className='flex gap-4 px-4 py-1 justify-end'>
+                {
+                 pageNav>1 &&
+                    <NavButton text="Previous"  action="b" data={pageNav} myHandler={handleNextItem} />
+                }
+                
+                <NavButton text="Continue" action="f" data={pageNav} myHandler={handleNextItem}/> 
+            </div>
         </div>
         <div className='overflow-scroll  bg-white h-full pb-40'>
             {/* OVER VIEW SECTION */}
@@ -330,28 +362,52 @@ const C101 = ({}) => {
             {
                 content=="example" &&
                 <div className='bg-white p-5'>
-                    <p className='font-inter font-semibold text-gray-500 p-4'>Primitive Data Types</p>
-                    {
-                        // <>
-                        //     <ExampleItem item={items.item} note={items.note} example={items.example}  key={index}/>
-                        // </>
-                        examples.map((items,index)=><ExampleItem item={items[0]} note={items[2]} example={items[1]}  key={index}/>)
+                    {pageNav==3&&
+                    <> 
+                        <p className='font-inter font-semibold text-gray-500'>Primitive Data Types</p>
+                        {
+                            examples.map((items,index)=><ExampleItem item={items[0]} note={items[2]} example={items[1]}  key={index} id={index}/>)
+                        }
+                    </>
                     }
+                    {pageNav==4&&
+                    <> 
+                        <p className='font-inter font-semibold text-gray-500'>Reference Data Types</p>
+                        {
+                            examples2.map((items,index)=><ExampleItem item={items[0]} note={items[2]} example={items[1]}  key={index} id={index}/>)
+                        }
+                    </>
+                        
+                    }
+                   
                 </div>
+            }
+
+            {/* VIDEO */}
+
+            {
+                content=="video" &&
+                <>
+                    <div className='flex items-center justify-center h-[200px] w-full flex-col gap-2'>
+                        <p>
+                        10 minutes video on data structure
+                        </p> 
+                        <button onClick={()=>setVideoState(true)} className='shadow-lg border py-3 px-5 rounded-full'>Access Video</button>
+                    </div>
+                   
+                   
+                    {
+                        videoState&& <VideoFile video={resource.videoSrc} closeHandler={handleClose}/>
+                    }
+                   
+                </>
             }
             
 
 
 
 
-            <div className='mt-10 flex gap-4 mb-4 p-4 '>
-                {
-                 pageNav>1 &&
-                    <NavButton text="Previous"  action="b" data={pageNav} myHandler={handleNextItem} />
-                }
-                
-                <NavButton text="Continue" action="f" data={pageNav} myHandler={handleNextItem}/> 
-            </div>
+            
             
         </div>
     </div>
