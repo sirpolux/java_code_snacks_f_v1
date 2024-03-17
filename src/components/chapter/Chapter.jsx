@@ -48,8 +48,12 @@ const Chapter = () => {
         }
     ];
   return(
-    <div className='transition-all duration-1000  ease-in'>
-        {chapters.map((item, index)=><ChapterListItem {...item} key={index}  itemInitial={"c"+(index+1)}/>) }
+    <div className='transition-all duration-1000  ease-in h-screen w-screen flex justify-center items-center'>
+        <div className='w-[400px] h-[600px] shadow rounded-2xl overflow-scroll'>
+             {chapters.map((item, index)=><ChapterListItem {...item} key={index}  itemInitial={"c"+(index+1)}/>) }
+        </div>
+
+       
     </div>
   )
 }

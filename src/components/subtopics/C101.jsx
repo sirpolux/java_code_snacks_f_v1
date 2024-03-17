@@ -18,8 +18,8 @@ const C101 = ({}) => {
         "In Java, variables must be declared with a specific data type before they can be used. This helps enforce type safety and ensures that variables are used appropriately within the program.",
         "Java provides two main categories of data types: primitive data types and reference data types. Primitive data types represent simple values like numbers and characters, while reference data types refer to objects and arrays created from classes or interfaces.",
         "Primitive data types are predefined by the language and have fixed sizes, while reference data types are created using classes or interfaces defined by the programmer or provided by the Java platform."
-
         ],
+        
         "readTime":"15",
         "importanceHeading":"",
         "importance":null,
@@ -294,7 +294,7 @@ const C101 = ({}) => {
             case 6:
                 setContent("exercise")
                 break;
-                
+
 
         }
         if(target==3){

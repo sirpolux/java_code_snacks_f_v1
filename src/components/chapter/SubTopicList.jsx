@@ -7,7 +7,7 @@ const SubTopicList = ({clickHandle,subIndex,topic,duration,exe}) => {
   }
 
   return (
-    <div className='flex flex-col gap-[1vw] shadow-sm border p-[4vw] font-mono text-[13px]'  onClick={()=>handleTopicClick()}>
+    <div className='flex flex-col gap-2 shadow-sm border p-4 font-mono text-[13px]'  onClick={()=>handleTopicClick()}>
         <div className='flex justify-between items-center font-normal'>
             <p className='font-madini text-[0.9rem]'>{topic} </p>
         </div>

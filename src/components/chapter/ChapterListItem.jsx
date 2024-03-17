@@ -25,7 +25,7 @@ const ChapterListItem = ({name,topic,duration,exe,id,itemInitial}) => {
   return (
     <div>
         <Link to={{pathname:"/subtopic", search:'?chapterId='+id+"&itemInitial="+itemInitial}}>
-            <div className='flex flex-col gap-[1vw] shadow-sm border p-[4vw] font-mono text-[13px]' >
+            <div className='flex flex-col gap-2 shadow-sm border p-6 px-8 font-mono text-[13px]' >
                 <div className='flex justify-between items-center font-normal'>
                     <p className='font-madini text-lg'>{name}</p>
                     <div className='rounded-full py-2 px-3 bg-gray-300 text-[13px]'>
@@ -39,7 +39,6 @@ const ChapterListItem = ({name,topic,duration,exe,id,itemInitial}) => {
                     <div className='flex items-center gap-1'>
                     <ion-icon name="hourglass-outline"></ion-icon> <p><span>{duration}</span></p>
                     </div>
-                    
                     <p>Exercises: {exe}</p>
                 </div>
             </div>

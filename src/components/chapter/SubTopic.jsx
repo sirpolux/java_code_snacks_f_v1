@@ -5,43 +5,13 @@ import resourceData from '../../data/courseData.json'
 import TopicMainContent from '../common/TopicMainContent'
 
 const SubTopic = () => {
-    
-
-    const defaultData={
-        "title":"",
-        "overView":"",
-        "assessment":{},
-        "summary":{},
-        "importance":{},
-        "examples":{},
-        "item":"overView"
-    }
-   const defaultExtras={
-        "moduleSize":0,
-        "modulePosition":0,
-        "courseItemIndex":0,
-        "courseSize":0,
-        "currentItem":"overView"
-    }
-
-    const [flow,setFlow]=useState([])
-
-    
-
-    const [extras,setExtras]=useState({...defaultExtras});
-    const [dataFile,updateDatafile]= useState({...defaultData})
+        
     const [currentItem,updateCurrentItem]=useState("")
     const [navPage,setNavPage]=useState(1)
     const [notFirstPage,setNotFirstPage]=useState(false);
     const [data,setData]=useState({});
 
-    let item =""
-    //const [courseItem,setCourseItem]=useState("")
-   
-
-    //const [currentData,updateCurrenData]=useState({...defaultData})
-
-
+    const [itemInitial, setItemInitial]=useState("");
     const handleViewUpdate=(option)=>{
         setNotFirstPage(true)
         const {modulePosition,moduleSize}=extras
@@ -67,98 +37,36 @@ const SubTopic = () => {
         }
 
     }
-
-    const decideCurrentResource=()=>{
-        console.log("i got here")
-        console.log("Current Item"+currentItem)
-        console.log("module item "+ extras.modulePosition)
-        switch(dataFile.item){
-            case "overView":
-                console.log("I should work")
-                handleOverview()
-                break;
-            case "examples":
-                handleExamples()
-                break;
-            default:
-        }
-    }
-
-    const changeCourseItem=(direction)=>{
-        if(courseItemIndex<courseSize-1){
-            courseItemIndex++
-        }
-    }
-
-    const handleItemUpdate=(item)=>{
-        console.log("I5555");
-        console.log(item)
-        updateCurrentItem(item)
-        console.log("I5jfkfjffk s555");
-       
-    }
-
-
-    let courseResource={};
     const searchParams = new URLSearchParams(location.search)
     const chapter=searchParams.get('chapterId')
     const itemInitials=searchParams.get("itemInitial")
-   // console.log(searchParams.get("itemInitial"))
-    //console.log(searchParams.get('chapterId'))
+    useEffect(()=>{
+        setItemInitial(itemInitials)
+    },[])
+
+    
+
+    console.log(searchParams.get("itemInitial"))
+    console.log(searchParams.get('chapterId'))
 
     const getResource=(subTopicIndex)=>{
         let resourceName=itemInitials+"-"+subTopicIndex
         return resourceName
     }
     const handleSubTopicClick=(subTopicIndex)=>{
-        let resource = getResource(subTopicIndex)
-        let data=resourceData[resource]
-        let moduleSize=0;
-        console.log("module size: "+ extras.moduleSize)
-        let courseSize=0
+        //console.log(subTopicIndex)
+        let targetDestination=itemInitial+"-"+subTopicIndex;
+        console.log(targetDestination)
+       
         //update dataFile
-        updateDatafile(data, 
-            ()=>{
-                moduleSize=dataFile[flow[0]].length
-                courseSize=dataFile.flow.length                
-                setExtras(
-                    {...extras, "moduleSize":moduleSize, "courseSize":courseSize, currentItem:"overView"},
-                    ()=>{
-                        decideCurrentResource()
-                        setNavPage(prevNavPage=>prevNavPage+1)
-                    }    
-                )
-            }    
-        )
-
-        
     }
     const handleSummary=()=>{
 
     }
-    const handleOverview=(title)=>{
-        if(notFirstPage){
-            console.log("i was called")
-            updateDatafile({...dataFile, "overView":data.overView[extras.modulePosition], "title":data.topic})
-            console.log(courseResource.overView[extras.modulePosition]);
-            console.log(dataFile)
-        }else{
-            updateDatafile({...dataFile, "overView":courseResource.overView[0], "title":courseResource.topic})
-        }
-
-    }
-
-    // useEffect(()=>{
-    //  console.log(dataFile)   
-    //  console.log("Item Updated: " +currentItem)
-     
-    // },[currentItem,dataFile])
-
+    
     const handleExamples=()=>{
 
     }
-
-
 
     const subTopics={
         "one":[
@@ -268,8 +176,10 @@ const SubTopic = () => {
 
   return (
     <>   
+    <div className='transition-all duration-1000  ease-in h-screen w-screen flex justify-center items-center'>
+        <div className='w-[400px] h-[600px] shadow rounded-2xl overflow-scroll'>
         {navPage==1&&
-        <div className='transition-all duration-1000  ease-in'>
+        <div className='transition-all duration-1000  ease-in overflow-auto'>
             <Nav target="/chapters"/>
             {
                 subTopics[chapter].map((item,index)=><SubTopicList key={index} {...item}  clickHandle={handleSubTopicClick} subIndex={index+1} />)
@@ -281,6 +191,8 @@ const SubTopic = () => {
                 
         }
 
+        </div>
+    </div>
     </>
   )
 }
