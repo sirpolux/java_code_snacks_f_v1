@@ -3,13 +3,15 @@ import SubTopicList from './SubTopicList'
 import Nav from '../common/Nav'
 import resourceData from '../../data/courseData.json'
 import TopicMainContent from '../common/TopicMainContent'
+import { useNavigate } from 'react-router-dom'
 
 const SubTopic = () => {
         
-    const [currentItem,updateCurrentItem]=useState("")
+    const navigate = useNavigate()
     const [navPage,setNavPage]=useState(1)
     const [notFirstPage,setNotFirstPage]=useState(false);
-    const [data,setData]=useState({});
+    const [chapterId, setChapterId]=useState("")
+
 
     const [itemInitial, setItemInitial]=useState("");
     const handleViewUpdate=(option)=>{
@@ -42,6 +44,7 @@ const SubTopic = () => {
     const itemInitials=searchParams.get("itemInitial")
     useEffect(()=>{
         setItemInitial(itemInitials)
+        setChapterId(chapter)
     },[])
 
     
@@ -55,7 +58,8 @@ const SubTopic = () => {
     }
     const handleSubTopicClick=(subTopicIndex)=>{
         //console.log(subTopicIndex)
-        let targetDestination=itemInitial+"-"+subTopicIndex;
+        let targetDestination="/course/"+itemInitial+"-"+subTopicIndex;
+        navigate(targetDestination)
         console.log(targetDestination)
        
         //update dataFile
@@ -180,7 +184,7 @@ const SubTopic = () => {
         <div className='w-[400px] h-[600px] shadow rounded-2xl overflow-scroll'>
         {navPage==1&&
         <div className='transition-all duration-1000  ease-in overflow-auto'>
-            <Nav target="/chapters"/>
+            <Nav target="/chapters" text={chapterId} />
             {
                 subTopics[chapter].map((item,index)=><SubTopicList key={index} {...item}  clickHandle={handleSubTopicClick} subIndex={index+1} />)
             }

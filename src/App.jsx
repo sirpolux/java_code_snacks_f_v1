@@ -44,7 +44,7 @@ function App() {
 
 
 
-        <Route path='/c2-1' element={<C101/>} />
+        <Route path='/course/c2-1' element={<C101/>} />
 
       </Routes>
     </BrowserRouter>

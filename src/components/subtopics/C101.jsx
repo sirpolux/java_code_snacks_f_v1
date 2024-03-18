@@ -3,13 +3,19 @@ import Overview from '../chapter/Overview'
 import NavButton from '../chapter/NavButton'
 import ExampleItem from '../chapter/ExampleItem'
 import VideoFile from '../chapter/VideoFile'
+import { useNavigate } from 'react-router-dom'
+import Exercise from '../chapter/Exercise'
 
 
 const C101 = ({}) => {
 
+    const navigate = useNavigate();
     const [pageNav,setPageNav]=useState(1)
     const [content,setContent]=useState("overView")
     const [videoState,setVideoState]=useState(false);
+    const [currentExercise,setCurrentExercise]=useState(0)
+    const [notLastExe,setNotLastExercise]=useState(true)
+    const [exerciseAns,setExerciseAns]=useState({})
 
     const resource={
         "flow":["overView", "examples", "video", "summary", "assessment", "otherResource"],
@@ -126,6 +132,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "32,767",
+                "questionId":"q0",
                 "options": [
                     "127",
                     "255",
@@ -139,6 +146,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "float",
+                "questionId":"q1",
                 "options": [
                     "float",
                     "double",
@@ -152,6 +160,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "char",
+                "questionId":"q2",
                 "options": [
                     "char",
                     "string",
@@ -165,6 +174,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "false",
+                "questionId":"q3",
                 "options": [
                     "true",
                     "false",
@@ -178,6 +188,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "string",
+                "questionId":"q4",
                 "options": [
                     "char",
                     "string",
@@ -191,6 +202,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "32 bits",
+                "questionId":"q5",
                 "options": [
                     "8 bits",
                     "16 bits",
@@ -204,6 +216,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "double",
+                "questionId":"q6",
                 "options": [
                     "int",
                     "short",
@@ -218,6 +231,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "new",
+                "questionId":"q7",
                 "options": [
                     "var",
                     "int",
@@ -231,6 +245,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "String",
+                "questionId":"q8",
                 "options": [
                     "byte",
                     "char",
@@ -244,6 +259,7 @@ const C101 = ({}) => {
                 "multipleAns": false,
                 "resource": "",
                 "correctAnswers": "array",
+                "questionId":"q9",
                 "options": [
                     "list",
                     "array",
@@ -252,6 +268,18 @@ const C101 = ({}) => {
                 ]
             }
         ]        
+    }
+
+    const moveToNextExercise=()=>{
+        if(currentExercise<resource.assessment.length-1){
+            let c =currentExercise+1
+            setCurrentExercise(c)
+            if(c==resource.assessment.length-1){
+                setNotLastExercise(false)
+            }
+        }
+        
+        
     }
     
     console.log(resource.examples[0].data)
@@ -294,8 +322,6 @@ const C101 = ({}) => {
             case 6:
                 setContent("exercise")
                 break;
-
-
         }
         if(target==3){
 
@@ -303,8 +329,7 @@ const C101 = ({}) => {
     }
 
     const backtoContent=()=>{
-
-
+        navigate("/subtopic?chapterId=two&itemInitial=c2")
     }
 
     const handleClose =()=>{
@@ -315,100 +340,92 @@ const C101 = ({}) => {
 
 
   return (
-    <div className='flex w-full h-screen flex-col bg-gradient-to-b from-primary to-white'>
-        <div className='h-28 w-full p-5'>
-            <div className='flex' >
-                <div className='rounded-full bg-white  h-8 px-3 flex items-center' onClick={()=>backtoContent(1)}>
-                    <ion-icon name="chevron-back-outline"></ion-icon>
-                    <span className='font-inter text-[0.8rem] font-light'>Go back</span>
-                </div>
-            </div>
-            <div className='h-full w-full flex items-center text-white text-lg font-semibold pb-1'>
-                <p>Data Types</p>
-            </div>
-        </div>
-        <div className='bg-white h-10 rounded-t-3xl'>
-            <div className='flex gap-4 px-4 py-1 justify-end'>
-                {
-                 pageNav>1 &&
-                    <NavButton text="Previous"  action="b" data={pageNav} myHandler={handleNextItem} />
-                }
-                
-                <NavButton text="Continue" action="f" data={pageNav} myHandler={handleNextItem}/> 
-            </div>
-        </div>
-        <div className='overflow-scroll  bg-white h-full pb-40'>
-            {/* OVER VIEW SECTION */}
-            {content=="overView" && 
-                <>
-                    {
-                    pageNav==1&&
-                    <>
-                        <Overview data={resource.overView[0]}/>
-                        <Overview data={resource.overView[1]}/>
-                    </>
-                    }  
-                    {pageNav==2&&
-                    <>
-                        <Overview data={resource.overView[2]}/>
-                        <Overview data={resource.overView[3]}/>
-                    </>    
-                    }  
-                             
-                </>
-            }
-
-            {/* EXAMPLE SECTION */}
-            {
-                content=="example" &&
-                <div className='bg-white p-5'>
-                    {pageNav==3&&
-                    <> 
-                        <p className='font-inter font-semibold text-gray-500'>Primitive Data Types</p>
-                        {
-                            examples.map((items,index)=><ExampleItem item={items[0]} note={items[2]} example={items[1]}  key={index} id={index}/>)
-                        }
-                    </>
-                    }
-                    {pageNav==4&&
-                    <> 
-                        <p className='font-inter font-semibold text-gray-500'>Reference Data Types</p>
-                        {
-                            examples2.map((items,index)=><ExampleItem item={items[0]} note={items[2]} example={items[1]}  key={index} id={index}/>)
-                        }
-                    </>
-                        
-                    }
-                   
-                </div>
-            }
-
-            {/* VIDEO */}
-
-            {
-                content=="video" &&
-                <>
-                    <div className='flex items-center justify-center h-[200px] w-full flex-col gap-2'>
-                        <p>
-                        10 minutes video on data structure
-                        </p> 
-                        <button onClick={()=>setVideoState(true)} className='shadow-lg border py-3 px-5 rounded-full'>Access Video</button>
+    <div className='transition-all duration-1000  ease-in h-screen w-screen flex justify-center items-center'>
+    <div className='w-[400px] h-[600px] shadow rounded-2xl overflow-scroll'>
+            <div className='flex w-full h-full flex-col bg-gradient-to-b from-primary to-white'>
+                <div className='h-28 w-full p-5'>
+                    <div className='flex' >
+                        <div className='rounded-full bg-white  h-8 px-3 flex items-center cursor-pointer' onClick={backtoContent}>
+                            <ion-icon name="chevron-back-outline"></ion-icon>
+                            <span className='font-inter text-[0.8rem] font-light'>Go back: Chapter Two </span>
+                        </div>
                     </div>
-                   
-                   
-                    {
-                        videoState&& <VideoFile video={resource.videoSrc} closeHandler={handleClose}/>
+                    <div className='h-full w-full flex items-center text-white text-lg font-semibold pb-1'>
+                        <p>Data Types</p>
+                    </div>
+                </div>
+                <div className='bg-white h-10 rounded-t-3xl'>
+                    <div className='flex gap-4 px-4 py-1 justify-end'>
+                        {
+                        pageNav>1 &&
+                            <NavButton text="Previous"  action="b" data={pageNav} myHandler={handleNextItem} />
+                        }
+                        
+                        <NavButton text="Continue" action="f" data={pageNav} myHandler={handleNextItem}/> 
+                    </div>
+                </div>
+                <div className='overflow-scroll  bg-white h-full pb-40'>
+                    {/* OVER VIEW SECTION */}
+                    {content=="overView" && 
+                        <>
+                            {
+                            pageNav==1&&
+                            <>
+                                <Overview data={resource.overView[0]}/>
+                                <Overview data={resource.overView[1]}/>
+                            </>
+                            }  
+                            {pageNav==2&&
+                            <>
+                                <Overview data={resource.overView[2]}/>
+                                <Overview data={resource.overView[3]}/>
+                            </>    
+                            }             
+                        </>
                     }
-                   
-                </>
-            }
-            
-
-
-
-
-            
-            
+                    {/* EXAMPLE SECTION */}
+                    {
+                        content=="example" &&
+                        <div className='bg-white p-5'>
+                            {pageNav==3&&
+                            <> 
+                                <p className='font-inter font-semibold text-gray-500'>Primitive Data Types</p>
+                                {
+                                    examples.map((items,index)=><ExampleItem item={items[0]} note={items[2]} example={items[1]}  key={index} id={index}/>)
+                                }
+                            </>
+                            }
+                            {pageNav==4&&
+                            <> 
+                                <p className='font-inter font-semibold text-gray-500'>Reference Data Types</p>
+                                {
+                                    examples2.map((items,index)=><ExampleItem item={items[0]} note={items[2]} example={items[1]}  key={index} id={index}/>)
+                                }
+                            </>   
+                            }
+                        </div>
+                    }
+                    {/* VIDEO */}
+                    {
+                        content=="video" &&
+                        <>
+                            <div className='flex items-center justify-center h-[200px] w-full flex-col gap-2'>
+                                <p>
+                                10 minutes video on data structure
+                                </p> 
+                                <button onClick={()=>setVideoState(true)} className='shadow-lg border py-3 px-5 rounded-full'>Access Video</button>
+                            </div>
+                            {
+                                videoState&& <VideoFile video={resource.videoSrc} closeHandler={handleClose}/>
+                            } 
+                        </>
+                    }  
+                    {
+                        content=="exercise" &&
+                       <Exercise data={resource.assessment[currentExercise]}  nextExe={moveToNextExercise} lastExer={notLastExe} questionIndex={currentExercise}  />
+                    }                  
+                </div>
+            </div>
         </div>
     </div>
   )
